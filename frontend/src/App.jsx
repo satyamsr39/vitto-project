@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import JobList from './components/JobList';
-import AddJobForm from './components/AddJobForm';
 import JobFilter from './components/JobFilter';
+import AddJobForm from './components/AddJobForm';
 
-const API_URL = process.env.API_URL_1;
+
+const API_URL = 'https://vitto-project-3.onrender.com/jobs';
 
 function App() {
   const [jobs, setJobs] = useState([]);
