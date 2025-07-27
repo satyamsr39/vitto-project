@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import JobList from './components/JobList';
-import AddJobForm from './components/AddJobform';
+import AddJobForm from './components/AddJobForm';
 import JobFilter from './components/JobFilter';
 
-const API_URL = 'http://localhost:3000/jobs';
+const API_URL = process.env.API_URL_1;
 
 function App() {
   const [jobs, setJobs] = useState([]);
