@@ -6,14 +6,22 @@ const router = Router();
 router.get('/', async (req, res) => {
   try {
     const { location, type } = req.query;
-
     const filter = {};
-    if (location) filter.location = new RegExp(location, 'i');
-    if (type) filter.jobType = new RegExp(type, 'i');
+
+    if (type) {
+      filter.jobType = new RegExp(type, 'i');
+    }
+
+    // Only apply location filter if type is NOT remote
+    if (location && type?.toLowerCase() !== 'remote') {
+      filter.location = new RegExp(location, 'i');
+    }
 
     const jobs = await Job.find(filter).sort({ createdAt: -1 });
     res.json(jobs);
+
   } catch (err) {
+    console.error('Error fetching jobs:', err);
     res.status(500).json({ error: 'Failed to fetch jobs.' });
   }
 });
